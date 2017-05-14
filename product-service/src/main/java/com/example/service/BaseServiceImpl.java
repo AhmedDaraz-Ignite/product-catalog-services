@@ -15,6 +15,13 @@ import com.example.view.BaseView;
 
 import ma.glasnost.orika.MapperFacade;
 
+/**
+ * Provide default implementation for all services CRUD operations, all services should implement this as part of application framework.
+ * @author Ahmed.Rabie
+ *
+ * @param <E>
+ * @param <V>
+ */
 public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> implements BaseService<E, V> {
 
 	private static final String UNABLE_TO_DELETE_RESOURCE = "Unable to delete resource {0} with parameter {1}";
@@ -26,12 +33,27 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 	
 	protected abstract JpaRepository<E, Long> getRepository();
 
+	/**
+	 * Template method to get service view object name.
+	 * @return
+	 */
 	protected abstract String getObjectName();
 
+	/**
+	 * template method to get view instance.
+	 * @return
+	 */
 	protected abstract V getViewInstance();
 
+	/**
+	 * Template method to get entity instance.
+	 * @return
+	 */
 	protected abstract E getEntityInstance();
 
+	/**
+	 * Get View by given Id.
+	 */
 	@Override
 	public V get(long id) throws ProductServiceException {
 		E entity;
@@ -47,6 +69,9 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 		return convertToView(entity);
 	}
 
+	/**
+	 * List all views
+	 */
 	@Override
 	public List<V> getAll() {
 		List<V> results = new ArrayList<>();
@@ -60,6 +85,9 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 		return results;
 	}
 
+	/**
+	 * Persist view into database. only users with Admin role can access this method.
+	 */
 	@Override
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public V create(V view) throws ProductServiceException {
@@ -74,6 +102,9 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 		return convertToView(entity);
 	}
 
+	/**
+	 * Update view in database. only users with Admin role can access this method.
+	 */
 	@Override
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public V update(V view) throws ProductServiceException {
@@ -94,6 +125,9 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 		return convertToView(entity);
 	}
 
+	/**
+	 * Delete view from database. only users with Admin role can access this method.
+	 */
 	@Override
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public void delete(long id) throws ProductServiceException {
@@ -105,6 +139,11 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 		}
 	}
 
+	/**
+	 * Convert from entity to View object, it uses orika mapping java library.
+	 * @param entity
+	 * @return
+	 */
 	protected V convertToView(E entity) {
 		MapperFacade mapper = BeanMapperUtil.getMapper();
 		V view = getViewInstance();
@@ -112,6 +151,11 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 		return view;
 	}
 
+	/**
+	 * Convert from List of entities to list of view objects, it uses orika mapping java library.
+	 * @param results
+	 * @param objects
+	 */
 	protected void convertToViews(List<V> results, List<E> objects) {
 		for (E entity : objects) {
 			V view = convertToView(entity);
@@ -119,6 +163,11 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 		}
 	}
 
+	/**
+	 * Convert from view to entity object, it uses orika mapping java library.
+	 * @param view
+	 * @return Entity
+	 */
 	protected E createEntity(V view) {
 		MapperFacade mapper = BeanMapperUtil.getMapper();
 		E entity = getEntityInstance();
@@ -126,6 +175,12 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 		return entity;
 	}
 
+	/**
+	 * Update given objects state.
+	 * @param entity
+	 * @param view
+	 * @return
+	 */
 	protected E updateEntity(E entity, V view) {
 		MapperFacade mapper = BeanMapperUtil.getMapper();
 		mapper.map(view, entity);

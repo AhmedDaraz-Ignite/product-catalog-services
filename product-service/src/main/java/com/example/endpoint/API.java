@@ -12,6 +12,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
+/**
+ * Api interface with all Rest CRUD operations, all Endpoints will implement this interface
+ * @author Ahmed.Rabie
+ *
+ * @param <V> Payload main type of Endpoint.
+ */
 @Api
 public interface API<V> {
 

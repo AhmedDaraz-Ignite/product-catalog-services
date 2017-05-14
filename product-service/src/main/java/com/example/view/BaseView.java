@@ -5,6 +5,11 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+/**
+ * BaseView, all View objects extends this class, as application framework standard.
+ * @author Ahmed.Rabie
+ *
+ */
 @JsonInclude(Include.NON_NULL)
 public class BaseView {
 	protected Long id;

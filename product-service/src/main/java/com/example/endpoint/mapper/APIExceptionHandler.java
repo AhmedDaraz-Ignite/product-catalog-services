@@ -14,11 +14,22 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.example.endpoint.StatucCode;
 import com.example.exception.ProductServiceException;
 
+/**
+ * Controller advice, intercepting applications exceptions and return rest API relevant response.
+ * @author Ahmed.Rabie
+ *
+ */
 @ControllerAdvice
 public class APIExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(APIExceptionHandler.class);
 	
+	/**
+	 * Handle ProductServiceException exceptions
+	 * @param ProductServiceException
+	 * @param request
+	 * @return Response with error information in standard application json payload.
+	 */
 	@ExceptionHandler(value = { ProductServiceException.class })
 	protected ResponseEntity<Object> handleServiceException(ProductServiceException ex, WebRequest request) {
 		
@@ -29,6 +40,12 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
 
 	}
 	
+	/**
+	 * Handle IllegalArgumentException exceptions
+	 * @param IllegalArgumentException
+	 * @param request
+	 * @return Response with error information in standard application json payload.
+	 */
 	@ExceptionHandler(value = { IllegalArgumentException.class })
 	protected ResponseEntity<Object> handleRuntimeException(IllegalArgumentException ex, WebRequest request) {
 		LOG.error("An error occured", ex);
@@ -37,6 +54,12 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 	}
 
+	/**
+	 * Handle RuntimeException exceptions
+	 * @param RuntimeException
+	 * @param request
+	 * @return Response with error information in standard application json payload.
+	 */
 	@ExceptionHandler(value = { RuntimeException.class })
 	protected ResponseEntity<Object> handleRuntimeException(RuntimeException ex, WebRequest request) {
 		LOG.error("An error occured", ex);
@@ -45,6 +68,11 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 	}
 	
+	/**
+	 * Map from application status code to HttpStatus code.
+	 * @param statusCode
+	 * @return HttpStatus
+	 */
 	private HttpStatus mapToHttpStatus(StatucCode statusCode) {
 		switch (statusCode) {
 		case RESOURCE_NOT_FOUND:
@@ -58,6 +86,12 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
 		}
 	}
 	
+	/**
+	 * Format exception message 
+	 * @param msg
+	 * @param args
+	 * @return
+	 */
 	private String formatMessage(String msg, Object[] args) {
 		return MessageFormat.format(msg, args);
 	}

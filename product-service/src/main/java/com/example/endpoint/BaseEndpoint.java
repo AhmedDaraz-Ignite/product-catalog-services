@@ -19,7 +19,13 @@ import com.example.model.BaseEntity;
 import com.example.service.Service;
 import com.example.view.BaseView;
 
-
+/**
+ * BaseEndpoint, all Endpoint have to extends this as it provide default implementation for all CRUD operations
+ * @author Ahmed.Rabie
+ *
+ * @param <T> Main Endpoint Entity
+ * @param <V> Main Endpoint View
+ */
 public abstract class BaseEndpoint<T extends BaseEntity, V extends BaseView> implements API<V>{
 	
 	private static final Logger LOG = LoggerFactory.getLogger(BaseEndpoint.class);
@@ -30,10 +36,21 @@ public abstract class BaseEndpoint<T extends BaseEntity, V extends BaseView> imp
 		this.baseService = baseService;
 	}
 	
+	/**
+	 * Template method to get EndpointName
+	 * @return
+	 */
 	protected abstract String getEndpointName();
 	
+	/**
+	 * Template method to get view object name
+	 * @return
+	 */
 	protected abstract String getObjectName();
 	
+	/**
+	 * Get resource by Id
+	 */
 	@Override
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ServiceResponse<V> get(@PathVariable("id") int id) {
@@ -42,6 +59,9 @@ public abstract class BaseEndpoint<T extends BaseEntity, V extends BaseView> imp
 		return ServiceResponse.buildGoodResponse(v);
 	}
 	
+	/**
+	 * Get all resources
+	 */
 	@Override
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	public ServiceResponse<List<V>> getAll() {
@@ -50,6 +70,9 @@ public abstract class BaseEndpoint<T extends BaseEntity, V extends BaseView> imp
 		return ServiceResponse.buildGoodResponse(views);
 	}
 	
+	/**
+	 * Create resource
+	 */
 	@Override
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public ResponseEntity<ServiceResponse<V>> create(@RequestBody V view) {
@@ -63,6 +86,9 @@ public abstract class BaseEndpoint<T extends BaseEntity, V extends BaseView> imp
 		return ResponseEntity.status(HttpStatus.CREATED).location(location).body(ServiceResponse.buildSuccessfulCreateResponse(v));
 	}
 	
+	/**
+	 * Delete resource
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "application/json")
 	public ServiceResponse<Void> delete(@PathVariable("id") int id) {
 		LOG.debug("{}.delete called with id {}", getEndpointName(), id);
@@ -70,6 +96,9 @@ public abstract class BaseEndpoint<T extends BaseEntity, V extends BaseView> imp
 		return ServiceResponse.buildGoodResponse(null);
 	}
 	
+	/**
+	 * Update resource
+	 */
 	@Override
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public ResponseEntity<ServiceResponse<V>> update(@PathVariable("id") Long id, @RequestBody V view) {
@@ -86,11 +115,16 @@ public abstract class BaseEndpoint<T extends BaseEntity, V extends BaseView> imp
 		
 	}
 	
+	/**
+	 * Validate update resource request, it ensure resource Id has been provided as path variable in addition to the Payload json type
+	 * @param id
+	 * @param v
+	 */
 	protected void validateUpdateRequest(Long id, V v) {
 	    Long objId = v.getId();
 	    if (objId == null || objId < 0) {
 	        throw new IllegalArgumentException("Id required for update");
-	    } 
+	    }
 	    if (!id.equals(v.getId())) {
 	        throw new IllegalArgumentException(MessageFormat.format("Provided Id {0} doesn't match Id of given resource", new Object[] {String.valueOf(id)}));
 	    }

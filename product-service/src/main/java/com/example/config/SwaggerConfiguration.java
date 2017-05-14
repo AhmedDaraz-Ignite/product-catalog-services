@@ -12,6 +12,11 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * Registering Swagger2 with the application, to provide Rest API documentations
+ * @author Ahmed.Rabie
+ *
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfiguration extends WebMvcConfigurerAdapter {

@@ -14,6 +14,11 @@ import org.springframework.stereotype.Service;
 import com.example.model.UserRole;
 import com.example.repository.UserAccountRepository;
 
+/**
+ * Custom implementation for spring security user details service.
+ * @author Ahmed.Rabie
+ *
+ */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 

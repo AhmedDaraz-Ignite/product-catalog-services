@@ -8,6 +8,11 @@ import com.example.model.CategoryEntity;
 import com.example.repository.CategoryRepository;
 import com.example.view.CategoryView;
 
+/**
+ * Category service class.
+ * @author Ahmed.Rabie
+ *
+ */
 @Service
 public class CategoryServiceImpl extends BaseServiceImpl<CategoryEntity, CategoryView> implements CategoryService {
 

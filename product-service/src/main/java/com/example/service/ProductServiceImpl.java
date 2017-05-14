@@ -20,6 +20,11 @@ import com.example.view.CategoryView;
 import com.example.view.ProductPriceView;
 import com.example.view.ProductView;
 
+/**
+ * Product service implementation
+ * @author Ahmed.Rabie
+ *
+ */
 @Service
 public class ProductServiceImpl extends BaseServiceImpl<ProductEntity, ProductView> implements ProductService {
 
@@ -48,6 +53,9 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductEntity, ProductVi
 		return categoryView;
 	}
 	
+	/**
+	 * Create product object, only users with admin Role can call this method.
+	 */
 	@Override
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public ProductView create(ProductView view) throws ProductServiceException {

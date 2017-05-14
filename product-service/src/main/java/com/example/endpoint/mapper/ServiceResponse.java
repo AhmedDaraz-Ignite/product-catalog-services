@@ -2,6 +2,12 @@ package com.example.endpoint.mapper;
 
 import org.springframework.http.HttpStatus;
 
+/**
+ * Service response wrapper object, wrapping POJO, application status code, message and Http status code.
+ * @author Ahmed.Rabie
+ *
+ * @param <T>
+ */
 public class ServiceResponse <T> {
 	
 	private T data;

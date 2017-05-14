@@ -5,8 +5,11 @@ import java.util.Map;
 
 import javax.naming.ServiceUnavailableException;
 
+/**
+ * Currency exchange service, it wrapes the actual service that provides currency rates.
+ * @author Ahmed.Rabie
+ *
+ */
 public interface CurrencyExchangeService {
 	Map<String, Double> getCurrencyAmountIn(List<String> targetCurrency, double amount) throws ServiceUnavailableException;
-
-	double getCurrencyAmountIn(String sourceCurrency, String targetCurrency, double amount) throws ServiceUnavailableException;
 }

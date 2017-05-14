@@ -11,7 +11,11 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
+/**
+ * BaseEntity, all application should implement this entity as part of application framework.
+ * @author Ahmed.Rabie
+ *
+ */
 @MappedSuperclass
 public class BaseEntity {
 	

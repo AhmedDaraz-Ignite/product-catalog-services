@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.endpoint.mapper.ServiceResponse;
 import com.example.model.ProductEntity;
 import com.example.service.ProductService;
 import com.example.view.CategoryView;
@@ -17,6 +18,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
+/**
+ * ProductEndpoint
+ * @author Ahmed.Rabie
+ *
+ */
 @Api("products")
 @RestController
 @RequestMapping("/products")
@@ -32,11 +38,16 @@ public class ProductEndpoint extends BaseEndpoint<ProductEntity, ProductView> {
 		this.productService = productService;
 	}
 
+	/**
+	 * Retrieve product category for given product Id
+	 * @param product Id
+	 * @return Product category
+	 */
 	@ApiOperation(value = "Retrieves product category for givin product Id", notes = "Returns product category")
 	@RequestMapping(value = "/{id}/category", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<CategoryView> getProductCategory(@PathVariable("id") @ApiParam(value = "Product Id", required = true, type = "Integer") int id) {
+	public ServiceResponse<CategoryView> getProductCategory(@PathVariable("id") @ApiParam(value = "Product Id", required = true, type = "Integer") int id) {
 		CategoryView categoryView = productService.getProductCategory(Long.valueOf(id));
-		return ResponseEntity.status(HttpStatus.OK).body(categoryView);
+		return ServiceResponse.buildGoodResponse(categoryView);
 	}
 
 	@Override

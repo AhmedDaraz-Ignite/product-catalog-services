@@ -2,6 +2,11 @@ package com.example.view;
 
 import java.util.List;
 
+/**
+ * Category view object.
+ * @author Ahmed.Rabie
+ *
+ */
 public class CategoryView extends BaseView {
 	
 	private List<ProductView> products;

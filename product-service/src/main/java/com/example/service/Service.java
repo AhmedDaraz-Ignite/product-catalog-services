@@ -6,6 +6,13 @@ import com.example.exception.ProductServiceException;
 import com.example.model.BaseEntity;
 import com.example.view.BaseView;
 
+/**
+ * Main service interface for application framework.
+ * @author Ahmed.Rabie
+ *
+ * @param <E extends BaseEntity>
+ * @param <V extends BaseView>
+ */
 public interface Service<E extends BaseEntity, V extends BaseView> {
 	
 	V get(long id) throws ProductServiceException;

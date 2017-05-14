@@ -1,5 +1,8 @@
 package com.example.view;
 
+/**
+ * Product view object
+ */
 import java.util.List;
 
 public class ProductView extends BaseView {

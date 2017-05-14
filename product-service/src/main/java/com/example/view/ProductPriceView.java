@@ -1,5 +1,10 @@
 package com.example.view;
 
+/**
+ * Product price view object.
+ * @author Ahmed.Rabie
+ *
+ */
 public class ProductPriceView extends BaseView {
 	
 	private String currency;
