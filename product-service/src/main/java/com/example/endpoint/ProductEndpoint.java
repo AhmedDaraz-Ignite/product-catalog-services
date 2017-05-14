@@ -22,6 +22,8 @@ import io.swagger.annotations.ApiParam;
 @RequestMapping("/products")
 public class ProductEndpoint extends BaseEndpoint<ProductEntity, ProductView> {
 
+	private static final String PRODUCT_VIEW = "ProductView";
+	private static final String PRODUCT_ENDPOINT = "ProductEndpoint";
 	private ProductService productService;
 	
 	@Autowired
@@ -39,7 +41,12 @@ public class ProductEndpoint extends BaseEndpoint<ProductEntity, ProductView> {
 
 	@Override
 	protected String getEndpointName() {
-		return ProductEndpoint.class.getName();
+		return PRODUCT_ENDPOINT;
+	}
+
+	@Override
+	protected String getObjectName() {
+		return PRODUCT_VIEW;
 	}
 
 }

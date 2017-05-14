@@ -17,6 +17,7 @@ import com.example.repository.UserAccountRepository;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
+	private static final String CANNOT_FIND_USER = "can't find user ";
 	private UserAccountRepository userAccountRepository;
 	
 	@Autowired
@@ -35,6 +36,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 							AuthorityUtils.createAuthorityList(roles.toArray(new String[roles.size()]))
 					 );
 				})
-				.orElseThrow(() -> new UsernameNotFoundException("can't find user " + username));
+				.orElseThrow(() -> new UsernameNotFoundException(CANNOT_FIND_USER + username));
 	}
 }

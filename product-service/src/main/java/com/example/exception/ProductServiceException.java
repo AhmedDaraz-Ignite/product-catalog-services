@@ -4,6 +4,7 @@ import com.example.endpoint.StatucCode;
 
 @SuppressWarnings("serial")
 public class ProductServiceException extends RuntimeException {
+	
 	private final transient Object[] args;
 	private final StatucCode statusCode;
 	private final String message;
@@ -30,7 +31,8 @@ public class ProductServiceException extends RuntimeException {
 		return statusCode;
 	}
 
+	@Override
 	public String getMessage() {
-		return message;
+		return this.message;
 	}
 }

@@ -42,7 +42,11 @@ public class CategoryEndpoint extends BaseEndpoint<CategoryEntity, CategoryView>
 	
 	@Override
 	protected String getEndpointName() {
-		return CategoryEndpoint.class.getName();
+		return "CategoryEndpoint";
 	}
 
+	@Override
+	protected String getObjectName() {
+		return "CategoryView";
+	}
 }

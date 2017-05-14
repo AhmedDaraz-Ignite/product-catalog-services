@@ -1,9 +1,11 @@
 package com.example.view;
 
+import java.util.List;
+
 public class ProductView extends BaseView {
 	
 	private double price;
-	private double salePrice;
+	private List<ProductPriceView> targetPrices;
 	private CategoryView category;
 	
 	public double getPrice() {
@@ -12,16 +14,16 @@ public class ProductView extends BaseView {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public double getSalePrice() {
-		return salePrice;
-	}
-	public void setSalePrice(double salePrice) {
-		this.salePrice = salePrice;
-	}
 	public CategoryView getCategory() {
 		return category;
 	}
 	public void setCategory(CategoryView category) {
 		this.category = category;
+	}
+	public List<ProductPriceView> getTargetPrices() {
+		return targetPrices;
+	}
+	public void setTargetPrices(List<ProductPriceView> targetPrices) {
+		this.targetPrices = targetPrices;
 	}
 }

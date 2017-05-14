@@ -11,6 +11,7 @@ import com.example.view.CategoryView;
 @Service
 public class CategoryServiceImpl extends BaseServiceImpl<CategoryEntity, CategoryView> implements CategoryService {
 
+	private static final String CATEGORY = "Category";
 	private CategoryRepository categoryRepository;
 	
 	@Autowired
@@ -25,7 +26,7 @@ public class CategoryServiceImpl extends BaseServiceImpl<CategoryEntity, Categor
 
 	@Override
 	protected String getObjectName() {
-		return "Category";
+		return CATEGORY;
 	}
 
 	@Override

@@ -40,7 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.and()
 				.csrf().disable()
 			.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.NEVER);
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 	
 	@Override

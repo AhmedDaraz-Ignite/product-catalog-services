@@ -17,6 +17,13 @@ import ma.glasnost.orika.MapperFacade;
 
 public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> implements BaseService<E, V> {
 
+	private static final String UNABLE_TO_DELETE_RESOURCE = "Unable to delete resource {0} with parameter {1}";
+	private static final String UNABLE_TO_UPDATE_RESOURCE = "Unable to update resource";
+	private static final String UNABLE_TO_GET_RESOURCE = "Unable to get resource";
+	private static final String UNABLE_TO_CREATE_RESOURCE = "Unable to create resource";
+	private static final String UNABLE_TO_LIST_RESOURCES = "Unable to list resources";
+	private static final String UNABLE_TO_GET_RESOURCE_ = "Unable to get resource {0} with parameter {1}";
+	
 	protected abstract JpaRepository<E, Long> getRepository();
 
 	protected abstract String getObjectName();
@@ -28,7 +35,6 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 	@Override
 	public V get(long id) throws ProductServiceException {
 		E entity;
-		String UNABLE_TO_GET_RESOURCE_ = "Unable to get resource {0} with parameter {1}";
 		try {
 			entity = getRepository().findOne(id);
 		} catch (DataAccessException e) {
@@ -36,7 +42,7 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 		}
 
 		if (entity == null) {
-			throw new ProductServiceException(UNABLE_TO_GET_RESOURCE_, StatucCode.PRODUCT_NOT_FOUND, getObjectName(), String.valueOf(id));
+			throw new ProductServiceException(UNABLE_TO_GET_RESOURCE_, StatucCode.RESOURCE_NOT_FOUND, getObjectName(), String.valueOf(id));
 		}
 		return convertToView(entity);
 	}
@@ -49,7 +55,7 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 			List<E> entities = getRepository().findAll();
 			convertToViews(results, entities);
 		} catch (DataAccessException e) {
-			throw new ProductServiceException("Unable to list resources", StatucCode.INTERNAL_SERVICE_ERROR, e);
+			throw new ProductServiceException(UNABLE_TO_LIST_RESOURCES, StatucCode.INTERNAL_SERVICE_ERROR, e);
 		}
 		return results;
 	}
@@ -63,7 +69,7 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 			entity = getRepository().save(entity);
 			getRepository().flush();
 		} catch (DataAccessException e) {
-			throw new ProductServiceException("Unable to create resource", StatucCode.CANNOT_CREATE_PRODUCT, e, getObjectName(), entity.getClass().getName());
+			throw new ProductServiceException(UNABLE_TO_CREATE_RESOURCE, StatucCode.CANNOT_CREATE_RESOURCE, e, getObjectName(), entity.getClass().getName());
 		}
 		return convertToView(entity);
 	}
@@ -73,7 +79,7 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 	public V update(V view) throws ProductServiceException {
 		E foundEntity = getRepository().findOne(view.getId());
 		if (foundEntity == null) {
-			throw new ProductServiceException("Unable to get resource", StatucCode.INTERNAL_SERVICE_ERROR, getObjectName(), view.getId());
+			throw new ProductServiceException(UNABLE_TO_GET_RESOURCE, StatucCode.INTERNAL_SERVICE_ERROR, getObjectName(), view.getId());
 		}
 
 		E entity = updateEntity(foundEntity, view);
@@ -82,7 +88,7 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 			entity = getRepository().save(entity);
 			getRepository().flush();
 		} catch (DataAccessException e) {
-			throw new ProductServiceException("Unable to update resource", StatucCode.INTERNAL_SERVICE_ERROR, e, getObjectName(), entity.getClass().getName());
+			throw new ProductServiceException(UNABLE_TO_UPDATE_RESOURCE, StatucCode.INTERNAL_SERVICE_ERROR, e, getObjectName(), entity.getClass().getName());
 		}
 
 		return convertToView(entity);
@@ -95,7 +101,7 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 			getRepository().delete(id);
 			getRepository().flush();
 		} catch (DataAccessException e) {
-			throw new ProductServiceException("Unable to get resource {0} with parameter {1}", StatucCode.INTERNAL_SERVICE_ERROR, e, getObjectName(), id);
+			throw new ProductServiceException(UNABLE_TO_DELETE_RESOURCE, StatucCode.INTERNAL_SERVICE_ERROR, e, getObjectName(), id);
 		}
 	}
 
@@ -125,4 +131,5 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 		mapper.map(view, entity);
 		return entity;
 	}
+	
 }

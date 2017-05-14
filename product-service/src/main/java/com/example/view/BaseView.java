@@ -7,9 +7,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_NULL)
 public class BaseView {
-	private Long id;
-	private String name;
-	private String description;
+	protected Long id;
+	protected String name;
+	protected String description;
 	protected Date creationDate;
 	protected Date lastUpdatedDate;
 	

@@ -5,10 +5,10 @@ import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 
 public final class BeanMapperUtil {
+	private static MapperFactory mapperFactory = new DefaultMapperFactory.Builder().mapNulls(false).build();
+
 	private BeanMapperUtil() {
 	}
-
-	private static MapperFactory mapperFactory = new DefaultMapperFactory.Builder().mapNulls(false).build();
 
 	public static MapperFactory getMapperFactory() {
 		return mapperFactory;
