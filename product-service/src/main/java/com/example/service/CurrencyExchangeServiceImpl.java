@@ -11,9 +11,17 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * Currency exchange service implementation.
+ * @author Ahmed.Rabie
+ *
+ */
 @Service
 public class CurrencyExchangeServiceImpl implements CurrencyExchangeService {
 
+	/**
+	 * [http://api.fixer.io/latest] is used as currency exchange provider.
+	 */
 	@Value("${api.currency-exchange.url}")
 	private String currencyExchangeUrl;
 	
@@ -25,6 +33,9 @@ public class CurrencyExchangeServiceImpl implements CurrencyExchangeService {
 	}
 
 	
+	/**
+	 *By providing required currency symbols [USD, GBP, EGP, etc..] method will return map with different proce values based on the given currency symbols.
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public Map<String, Double> getCurrencyAmountIn(List<String> targetCurrency, double amount) throws ServiceUnavailableException {
