@@ -2,7 +2,7 @@ package com.example.service;
 
 import java.util.List;
 
-import com.example.exception.ProductServiceException;
+import com.example.common.exception.ProductServiceException;
 import com.example.model.BaseEntity;
 import com.example.view.BaseView;
 

@@ -23,6 +23,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.example.common.ParentIntegrationTest;
 import com.example.view.ProductPriceView;
 import com.example.view.ProductView;
 
@@ -30,7 +31,7 @@ import com.example.view.ProductView;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
-public class ProductEndpointIT extends EndpointTest {
+public class ProductEndpointIT extends ParentIntegrationTest {
 
 	@Autowired
 	private WebApplicationContext context;

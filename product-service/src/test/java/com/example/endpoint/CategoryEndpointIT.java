@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.example.common.ParentIntegrationTest;
 import com.example.service.CategoryService;
 import com.example.view.CategoryView;
 
@@ -27,7 +28,7 @@ import com.example.view.CategoryView;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
-public class CategoryEndpointIT extends EndpointTest {
+public class CategoryEndpointIT extends ParentIntegrationTest {
 
 	@Autowired
 	private WebApplicationContext context;

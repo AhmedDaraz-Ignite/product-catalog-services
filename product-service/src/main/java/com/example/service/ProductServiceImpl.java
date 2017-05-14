@@ -3,6 +3,7 @@ package com.example.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.naming.ServiceUnavailableException;
 
@@ -11,9 +12,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
-import com.example.beanmapping.BeanMapperUtil;
+import com.example.common.beanmapping.BeanMapperUtil;
+import com.example.common.exception.ProductServiceException;
 import com.example.endpoint.StatucCode;
-import com.example.exception.ProductServiceException;
 import com.example.model.ProductEntity;
 import com.example.repository.ProductRepository;
 import com.example.view.CategoryView;
@@ -49,7 +50,12 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductEntity, ProductVi
 	@Override
 	public CategoryView getProductCategory(Long productId) {
 		CategoryView categoryView = new CategoryView();
-		BeanMapperUtil.getMapper().map(productRepository.getOne(productId).getCategory(), categoryView);
+		
+		ProductEntity product = productRepository.findOne(productId);
+		if (Objects.isNull(product)) {
+			throw new ProductServiceException("Resource with Id {0} not found", StatucCode.RESOURCE_NOT_FOUND, productId);
+		}
+		BeanMapperUtil.getMapper().map(product.getCategory(), categoryView);
 		return categoryView;
 	}
 	
@@ -71,7 +77,6 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductEntity, ProductVi
 				throw new ProductServiceException("Currency exchange service unavailable", StatucCode.INTERNAL_SERVICE_ERROR, e);
 			}
 		}
-		
 		return super.create(view);
 	}
 	
@@ -94,5 +99,11 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductEntity, ProductVi
 	protected ProductEntity getEntityInstance() {
 		return new ProductEntity();
 	}
+
+	@Override
+	protected void fixEntityAssociations(ProductEntity entity) {
+		entity.getTargetPrices().forEach(price -> price.setProduct(entity));
+	}
+
 
 }

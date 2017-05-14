@@ -44,5 +44,10 @@ public class CategoryServiceImpl extends BaseServiceImpl<CategoryEntity, Categor
 		return new CategoryEntity();
 	}
 
+	@Override
+	protected void fixEntityAssociations(CategoryEntity entity) {
+		// No associations to be fixed in entity creation.
+	}
+
 
 }

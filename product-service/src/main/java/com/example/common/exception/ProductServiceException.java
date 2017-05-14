@@ -1,4 +1,4 @@
-package com.example.exception;
+package com.example.common.exception;
 
 import com.example.endpoint.StatucCode;
 

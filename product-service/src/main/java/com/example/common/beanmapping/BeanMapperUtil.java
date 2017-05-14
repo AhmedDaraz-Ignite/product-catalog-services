@@ -1,4 +1,4 @@
-package com.example.beanmapping;
+package com.example.common.beanmapping;
 
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;

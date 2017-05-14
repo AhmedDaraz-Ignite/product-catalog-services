@@ -7,9 +7,10 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.example.beanmapping.BeanMapperUtil;
+import com.example.common.Constants;
+import com.example.common.beanmapping.BeanMapperUtil;
+import com.example.common.exception.ProductServiceException;
 import com.example.endpoint.StatucCode;
-import com.example.exception.ProductServiceException;
 import com.example.model.BaseEntity;
 import com.example.view.BaseView;
 
@@ -24,13 +25,6 @@ import ma.glasnost.orika.MapperFacade;
  */
 public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> implements BaseService<E, V> {
 
-	private static final String UNABLE_TO_DELETE_RESOURCE = "Unable to delete resource {0} with parameter {1}";
-	private static final String UNABLE_TO_UPDATE_RESOURCE = "Unable to update resource";
-	private static final String UNABLE_TO_GET_RESOURCE = "Unable to get resource";
-	private static final String UNABLE_TO_CREATE_RESOURCE = "Unable to create resource";
-	private static final String UNABLE_TO_LIST_RESOURCES = "Unable to list resources";
-	private static final String UNABLE_TO_GET_RESOURCE_ = "Unable to get resource {0} with parameter {1}";
-	
 	protected abstract JpaRepository<E, Long> getRepository();
 
 	/**
@@ -50,6 +44,12 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 	 * @return
 	 */
 	protected abstract E getEntityInstance();
+	
+	/**
+	 * Associate bidirectional associations before entity creation.
+	 * @param entity
+	 */
+	protected abstract void fixEntityAssociations(E entity);
 
 	/**
 	 * Get View by given Id.
@@ -60,11 +60,11 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 		try {
 			entity = getRepository().findOne(id);
 		} catch (DataAccessException e) {
-			throw new ProductServiceException(UNABLE_TO_GET_RESOURCE_, StatucCode.INTERNAL_SERVICE_ERROR, e, getObjectName(), String.valueOf(id));
+			throw new ProductServiceException(Constants.UNABLE_TO_GET_RESOURCE_, StatucCode.INTERNAL_SERVICE_ERROR, e, getObjectName(), String.valueOf(id));
 		}
 
 		if (entity == null) {
-			throw new ProductServiceException(UNABLE_TO_GET_RESOURCE_, StatucCode.RESOURCE_NOT_FOUND, getObjectName(), String.valueOf(id));
+			throw new ProductServiceException(Constants.UNABLE_TO_GET_RESOURCE_, StatucCode.RESOURCE_NOT_FOUND, getObjectName(), String.valueOf(id));
 		}
 		return convertToView(entity);
 	}
@@ -80,7 +80,7 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 			List<E> entities = getRepository().findAll();
 			convertToViews(results, entities);
 		} catch (DataAccessException e) {
-			throw new ProductServiceException(UNABLE_TO_LIST_RESOURCES, StatucCode.INTERNAL_SERVICE_ERROR, e);
+			throw new ProductServiceException(Constants.UNABLE_TO_LIST_RESOURCES, StatucCode.INTERNAL_SERVICE_ERROR, e);
 		}
 		return results;
 	}
@@ -92,12 +92,12 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public V create(V view) throws ProductServiceException {
 		E entity = createEntity(view);
-
+		fixEntityAssociations(entity);
 		try {
 			entity = getRepository().save(entity);
 			getRepository().flush();
 		} catch (DataAccessException e) {
-			throw new ProductServiceException(UNABLE_TO_CREATE_RESOURCE, StatucCode.CANNOT_CREATE_RESOURCE, e, getObjectName(), entity.getClass().getName());
+			throw new ProductServiceException(Constants.UNABLE_TO_CREATE_RESOURCE, StatucCode.CANNOT_CREATE_RESOURCE, e, getObjectName(), entity.getClass().getName());
 		}
 		return convertToView(entity);
 	}
@@ -110,7 +110,7 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 	public V update(V view) throws ProductServiceException {
 		E foundEntity = getRepository().findOne(view.getId());
 		if (foundEntity == null) {
-			throw new ProductServiceException(UNABLE_TO_GET_RESOURCE, StatucCode.INTERNAL_SERVICE_ERROR, getObjectName(), view.getId());
+			throw new ProductServiceException(Constants.UNABLE_TO_GET_RESOURCE, StatucCode.INTERNAL_SERVICE_ERROR, getObjectName(), view.getId());
 		}
 
 		E entity = updateEntity(foundEntity, view);
@@ -119,7 +119,7 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 			entity = getRepository().save(entity);
 			getRepository().flush();
 		} catch (DataAccessException e) {
-			throw new ProductServiceException(UNABLE_TO_UPDATE_RESOURCE, StatucCode.INTERNAL_SERVICE_ERROR, e, getObjectName(), entity.getClass().getName());
+			throw new ProductServiceException(Constants.UNABLE_TO_UPDATE_RESOURCE, StatucCode.INTERNAL_SERVICE_ERROR, e, getObjectName(), entity.getClass().getName());
 		}
 
 		return convertToView(entity);
@@ -135,7 +135,7 @@ public abstract class BaseServiceImpl<E extends BaseEntity, V extends BaseView> 
 			getRepository().delete(id);
 			getRepository().flush();
 		} catch (DataAccessException e) {
-			throw new ProductServiceException(UNABLE_TO_DELETE_RESOURCE, StatucCode.INTERNAL_SERVICE_ERROR, e, getObjectName(), id);
+			throw new ProductServiceException(Constants.UNABLE_TO_DELETE_RESOURCE, StatucCode.INTERNAL_SERVICE_ERROR, e, getObjectName(), id);
 		}
 	}
 

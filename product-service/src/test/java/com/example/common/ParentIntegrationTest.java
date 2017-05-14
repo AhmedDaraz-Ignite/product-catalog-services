@@ -1,4 +1,6 @@
-package com.example.endpoint;
+package com.example.common;
+
+import org.springframework.test.context.ActiveProfiles;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -7,7 +9,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @author Ahmed.Rabie
  *
  */
-public class EndpointTest {
+@ActiveProfiles("dev")
+public class ParentIntegrationTest {
 
 	/**
 	 * Convert POJO to json.

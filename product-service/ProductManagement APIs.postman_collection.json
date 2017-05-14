@@ -1,0 +1,329 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ProductManagement APIs",
+		"_postman_id": "b73388ca-ba6d-1598-a4ef-508ec0fbf001",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"description": "",
+			"item": [
+				{
+					"name": "Create Category",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "ahmed",
+								"password": "ahmed",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "{{Protocol}}://{{Host}}:{{Port}}/{{Category}}",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWhtZWQ6YWhtZWQ=",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"New Category\",\r\n  \"description\": \"new Category\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Categories",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "ahmed",
+								"password": "ahmed",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "{{Protocol}}://{{Host}}:{{Port}}/{{Category}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWhtZWQ6YWhtZWQ=",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"New Category\",\r\n  \"description\": \"new Category\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "ahmed",
+								"password": "ahmed",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "{{Protocol}}://{{Host}}:{{Port}}/{{Category}}/1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWhtZWQ6YWhtZWQ=",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "ahmed",
+								"password": "ahmed",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "{{Protocol}}://{{Host}}:{{Port}}/{{Category}}/1",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWhtZWQ6YWhtZWQ=",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"New Category - Updated\",\r\n  \"description\": \"new Category - Updated\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"description": "",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "ahmed",
+								"password": "ahmed",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "{{Protocol}}://{{Host}}:{{Port}}/{{Products}}",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWhtZWQ6YWhtZWQ=",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"category\": {\r\n    \"id\": 1\r\n  },\r\n  \"description\": \"new product\",\r\n  \"name\": \"huawi mobile\",\r\n  \"price\": 500,\r\n  \"targetPrices\": [\r\n    {\r\n      \"currency\": \"USD\"\r\n    }\r\n  ]\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "ahmed",
+								"password": "ahmed",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "{{Protocol}}://{{Host}}:{{Port}}/{{Products}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWhtZWQ6YWhtZWQ=",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"New Category\",\r\n  \"description\": \"new Category\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "ahmed",
+								"password": "ahmed",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "{{Protocol}}://{{Host}}:{{Port}}/{{Products}}/1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWhtZWQ6YWhtZWQ=",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "ahmed",
+								"password": "ahmed",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "{{Protocol}}://{{Host}}:{{Port}}/{{Products}}/2",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWhtZWQ6YWhtZWQ=",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 2,\r\n  \"description\": \"new product - updated\",\r\n  \"name\": \"huawi mobile - updated\",\r\n  \"price\": 500,\r\n  \"targetPrices\": [\r\n    {\r\n      \"currency\": \"USD\"\r\n    }\r\n  ]\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product Category",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "ahmed",
+								"password": "ahmed",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "{{Protocol}}://{{Host}}:{{Port}}/{{Products}}/1/{{Category}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWhtZWQ6YWhtZWQ=",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"New Category\",\r\n  \"description\": \"new Category\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

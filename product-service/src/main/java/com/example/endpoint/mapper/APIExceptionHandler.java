@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.example.common.exception.ProductServiceException;
 import com.example.endpoint.StatucCode;
-import com.example.exception.ProductServiceException;
 
 /**
  * Controller advice, intercepting applications exceptions and return rest API relevant response.
