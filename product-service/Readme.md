@@ -17,11 +17,11 @@ Simple product management application, exposing REST API to perform CRUD operati
 Project is basen on spring boot, and it has 2 main profiles (dev/prod)
 It is recommended to run with dev profile as it has some data useful for testing purposes.
 
-### Current configuration files are under config folder in project root folder, however you can still change this location and point to your own folder:
+#### Current configuration files are under config folder in project root folder, however you can still change this location and point to your own folder:
 ```
--Dspring.config.location=./config/
+-Dspring.config.location=<YOUR_CONFIG_FOLDER>
 ```
-### Configure DB: config/application-dev/prod.properties
+#### Configure DB  ```application-dev.properties/application-prod.properties```
 
  - spring.datasource.url=<jdbc:mysql://<YOUR_HOST>:<YOUR_PORT>/product_catalog?createDatabaseIfNotExist=true>
  - spring.datasource.username=<YOUR_DB_USER> 
