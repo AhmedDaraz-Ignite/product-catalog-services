@@ -5,6 +5,7 @@ Simple product management application, exposing REST API to perform CRUD operati
 ### Project used technologies
  - Java 8
  - MySQL DB
+ - Maven 3.3+
  - Spring Boot
  - Swagger (API documentation)
  - Spring security
@@ -52,7 +53,7 @@ http://localhost:8080/swagger-ui.html
  - import the following API file	```ProductManagement APIs.postman_collection.json```
 
 #### Authentication data
-##### The system comes with 2 predefined user accounts
+##### The system comes with 3 predefined user accounts
 	- username: ahmed / password: ahmed  ---- Super user with Role 'Admin'
 	- username: martin / password: martin  ---- Standard read only user with Role 'Uesr'
 	- username: salme / password: salme  ---- Standard read only user with Role 'Uesr'

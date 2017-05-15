@@ -11,5 +11,6 @@ insert into user (name, username, password, creation_date) values ('Salma', 'sal
 
 insert into user_role (name, description, user_id, creation_date) values ('ADMIN', 'admin user', 1, current_timestamp );
 insert into user_role (name, description, user_id, creation_date) values ('USER', 'standard user', 2, current_timestamp );
+insert into user_role (name, description, user_id, creation_date) values ('USER', 'standard user', 3, current_timestamp );
 
 
