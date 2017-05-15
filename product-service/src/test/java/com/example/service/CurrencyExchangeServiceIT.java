@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.common.ParentIntegrationTest;
+import com.example.user.CurrencyExchangeService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

@@ -24,8 +24,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.example.common.ParentIntegrationTest;
-import com.example.view.ProductPriceView;
-import com.example.view.ProductView;
+import com.example.product.ProductPriceView;
+import com.example.product.ProductView;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

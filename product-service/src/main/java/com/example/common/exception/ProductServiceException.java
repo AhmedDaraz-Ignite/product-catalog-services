@@ -1,6 +1,6 @@
 package com.example.common.exception;
 
-import com.example.endpoint.StatucCode;
+import com.example.common.types.StatucCode;
 
 @SuppressWarnings("serial")
 public class ProductServiceException extends RuntimeException {

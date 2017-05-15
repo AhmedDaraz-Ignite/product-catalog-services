@@ -20,9 +20,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.example.category.CategoryService;
+import com.example.category.CategoryView;
 import com.example.common.ParentIntegrationTest;
-import com.example.service.CategoryService;
-import com.example.view.CategoryView;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
