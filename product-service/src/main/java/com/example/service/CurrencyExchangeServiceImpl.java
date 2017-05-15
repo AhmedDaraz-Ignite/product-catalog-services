@@ -42,7 +42,7 @@ public class CurrencyExchangeServiceImpl implements CurrencyExchangeService {
 		Map<String, String> params = new HashMap<>();
 	    
 	    StringBuilder prices = new StringBuilder();
-	    targetCurrency.forEach(price -> prices.append(price));
+	    targetCurrency.forEach(price -> prices.append(price + ","));
 	    params.put("symbols", prices.toString());
 		
 		Map<String, Object> response = restTemplate.getForObject(currencyExchangeUrl, Map.class, params);
