@@ -21,11 +21,12 @@ It is recommended to run with dev profile as it has some data useful for testing
 ```
 -Dspring.config.location=<YOUR_CONFIG_FOLDER>
 ```
-#### Configure DB  ```application-dev.properties/application-prod.properties```
+#### Configure DB  
+```application-dev.properties```
 
- - spring.datasource.url=<jdbc:mysql://<YOUR_HOST>:<YOUR_PORT>/product_catalog?createDatabaseIfNotExist=true>
- - spring.datasource.username=<YOUR_DB_USER> 
- - spring.datasource.password=<YOUR_DB_PASSWORD>
+	 - spring.datasource.url=<jdbc:mysql://<YOUR_HOST>:<YOUR_PORT>/product_catalog?createDatabaseIfNotExist=true>
+	 - spring.datasource.username=<YOUR_DB_USER> 
+	 - spring.datasource.password=<YOUR_DB_PASSWORD>
 
 #### build the project with maven:
 
