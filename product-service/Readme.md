@@ -50,4 +50,15 @@ http://localhost:8080/swagger-ui.html
  - install Postman 
  - import the following API environment file 	```ProductManagement APIs.postman_environment.json```
  - import the following API file	```ProductManagement APIs.postman_collection.json```
+
+#### Authentication data
+	The system comes with 2 predefined user accounts
+			- username: ahmed / password: ahmed  ---- Super user with Role 'Admin'
+			- username: martin / password: martin  ---- Standard read only user with Role 'Uesr'
+			- username: salme / password: salme  ---- Standard read only user with Role 'Uesr'
+
+#### Areas for improvements
+ - Configure SSL security for Rest API, Curretly it use Http basic authentication.
+ - Increase test coverage, Current test coverage is 67.55
+ - Integrate with CI <jenkins/team city>
  
