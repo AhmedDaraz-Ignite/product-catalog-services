@@ -56,7 +56,7 @@ http://localhost:8080/swagger-ui.html
 ##### The system comes with 3 predefined user accounts
 	- username: ahmed / password: ahmed  ---- Super user with Role 'Admin'
 	- username: martin / password: martin  ---- Standard read only user with Role 'Uesr'
-	- username: salme / password: salme  ---- Standard read only user with Role 'Uesr'
+	- username: salma / password: salma  ---- Standard read only user with Role 'Uesr'
 
 #### Areas for improvements
  - Configure SSL security for Rest API, Curretly it use Http basic authentication.
