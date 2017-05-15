@@ -48,6 +48,8 @@ http://localhost:8080/swagger-ui.html
 
 #### Sample test requests are added in Postman file
  - install Postman 
- - import the following API environment file ```ProductManagement APIs.postman_environment.json```
- - import the following API file ```ProductManagement APIs.postman_collection.json```
+ - import the following API environment file 
+	```ProductManagement APIs.postman_environment.json```
+ - import the following API file 
+	```ProductManagement APIs.postman_collection.json```
  
