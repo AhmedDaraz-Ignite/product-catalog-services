@@ -52,10 +52,10 @@ http://localhost:8080/swagger-ui.html
  - import the following API file	```ProductManagement APIs.postman_collection.json```
 
 #### Authentication data
-	The system comes with 2 predefined user accounts
-			- username: ahmed / password: ahmed  ---- Super user with Role 'Admin'
-			- username: martin / password: martin  ---- Standard read only user with Role 'Uesr'
-			- username: salme / password: salme  ---- Standard read only user with Role 'Uesr'
+##### The system comes with 2 predefined user accounts
+	- username: ahmed / password: ahmed  ---- Super user with Role 'Admin'
+	- username: martin / password: martin  ---- Standard read only user with Role 'Uesr'
+	- username: salme / password: salme  ---- Standard read only user with Role 'Uesr'
 
 #### Areas for improvements
  - Configure SSL security for Rest API, Curretly it use Http basic authentication.
